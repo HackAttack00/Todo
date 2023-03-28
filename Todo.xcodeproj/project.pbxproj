@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		39F0524C29D30D7300087F56 /* AddTodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F0524B29D30D7300087F56 /* AddTodoView.swift */; };
 		39F807CB29D0924A00B09AD5 /* TodoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F807CA29D0924A00B09AD5 /* TodoApp.swift */; };
 		39F807CD29D0924A00B09AD5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F807CC29D0924A00B09AD5 /* ContentView.swift */; };
 		39F807CF29D0924B00B09AD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39F807CE29D0924B00B09AD5 /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		39F0524B29D30D7300087F56 /* AddTodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoView.swift; sourceTree = "<group>"; };
 		39F807C729D0924A00B09AD5 /* Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39F807CA29D0924A00B09AD5 /* TodoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoApp.swift; sourceTree = "<group>"; };
 		39F807CC29D0924A00B09AD5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -36,6 +38,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		39F0524A29D30D6100087F56 /* Veiw */ = {
+			isa = PBXGroup;
+			children = (
+				39F0524B29D30D7300087F56 /* AddTodoView.swift */,
+			);
+			path = Veiw;
+			sourceTree = "<group>";
+		};
 		39F807BE29D0924A00B09AD5 = {
 			isa = PBXGroup;
 			children = (
@@ -55,6 +65,7 @@
 		39F807C929D0924A00B09AD5 /* Todo */ = {
 			isa = PBXGroup;
 			children = (
+				39F0524A29D30D6100087F56 /* Veiw */,
 				39F807CA29D0924A00B09AD5 /* TodoApp.swift */,
 				39F807CC29D0924A00B09AD5 /* ContentView.swift */,
 				39F807CE29D0924B00B09AD5 /* Assets.xcassets */,
@@ -147,6 +158,7 @@
 				39F807CD29D0924A00B09AD5 /* ContentView.swift in Sources */,
 				39F807CB29D0924A00B09AD5 /* TodoApp.swift in Sources */,
 				39F807D729D0924B00B09AD5 /* Todo.xcdatamodeld in Sources */,
+				39F0524C29D30D7300087F56 /* AddTodoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
