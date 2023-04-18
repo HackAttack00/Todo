@@ -9,8 +9,9 @@ import SwiftUI
 
 @main
 struct TodoApp: App {
+    @UIApplicationDelegateAdaptor var delegate: AppDelegate
     let persistenceController = PersistenceController.shared
-
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

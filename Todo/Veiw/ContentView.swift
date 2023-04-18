@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var showingAddTodoView: Bool = false
+    @Environment(\.scenePhase) var scenePhase
     
     var body: some View {
         NavigationView {
@@ -28,6 +29,22 @@ struct ContentView: View {
                 }
             )
         }
+        .onChange(of: scenePhase) { phase in
+            switch phase {
+            case .active:
+                print("켜짐")
+            case .inactive:
+                print("꺼짐")
+            case .background:
+                print("백그라운드에서 돌아가는 중")
+            default:
+                print("뭐지")
+            }
+        }
+    }
+    
+    func enterBackground() {
+        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
 }
 
@@ -38,8 +55,8 @@ private let itemFormatter: DateFormatter = {
     return formatter
 }()
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+//    }
+//}
