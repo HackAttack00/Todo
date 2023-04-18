@@ -9,16 +9,32 @@ import SwiftUI
 
 struct ContentView: View {
     
+    
+    @Environment(\.managedObjectContext) var managedObjectContext
+    
+    @FetchRequest(entity: Todo.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Todo.name, ascending: true)])
+    var todos: FetchedResults<Todo>
+    
     @State private var showingAddTodoView: Bool = false
     @Environment(\.scenePhase) var scenePhase
     
     var body: some View {
         NavigationView {
-            List(0..<5) { item in
-                Text("Hello")
+            List{
+                ForEach(self.todos, id:\.self) { todo in
+                    HStack {
+                        Text(todo.name ?? "unknown")
+                        Spacer()
+                        Text(todo.priority ?? "unknown")
+                    }
+                    
+                }
+                .onDelete(perform: deleteTodo)
             }
             .navigationBarTitle("Todo", displayMode: .inline)
-            .navigationBarItems(trailing:
+            .navigationBarItems(
+                leading: EditButton(),
+                trailing:
                 Button(action: {
                     self.showingAddTodoView.toggle()
                 }) {
@@ -46,6 +62,19 @@ struct ContentView: View {
     func enterBackground() {
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
+    
+    private func deleteTodo(at offsets: IndexSet) {
+        for index in offsets {
+            let todo = todos[index]
+            managedObjectContext.delete(todo)
+            
+            do {
+                try managedObjectContext.save()
+            } catch {
+                print(error)
+            }
+        }
+    }
 }
 
 private let itemFormatter: DateFormatter = {
@@ -57,6 +86,10 @@ private let itemFormatter: DateFormatter = {
 
 //struct ContentView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+//        let context = (UIApplication.shared.delegate as!
+//                       AppDelegate).persistentContainer.viewContext
+//        return ContentView()
+//            .environment(\.managedObjectContext, context)
+//            .previewContext("iphoen 12 pro")
 //    }
 //}
