@@ -20,30 +20,36 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            List{
-                ForEach(self.todos, id:\.self) { todo in
-                    HStack {
-                        Text(todo.name ?? "unknown")
-                        Spacer()
-                        Text(todo.priority ?? "unknown")
+            ZStack {
+                List{
+                    ForEach(self.todos, id:\.self) { todo in
+                        HStack {
+                            Text(todo.name ?? "unknown")
+                            Spacer()
+                            Text(todo.priority ?? "unknown")
+                        }
+                        
                     }
-                    
+                    .onDelete(perform: deleteTodo)
                 }
-                .onDelete(perform: deleteTodo)
-            }
-            .navigationBarTitle("Todo", displayMode: .inline)
-            .navigationBarItems(
-                leading: EditButton(),
-                trailing:
-                Button(action: {
-                    self.showingAddTodoView.toggle()
-                }) {
-                    Image(systemName: "plus")
+                .navigationBarTitle("Todo", displayMode: .inline)
+                .navigationBarItems(
+                    leading: EditButton(),
+                    trailing:
+                    Button(action: {
+                        self.showingAddTodoView.toggle()
+                    }) {
+                        Image(systemName: "plus")
+                    }
+                    .sheet(isPresented: $showingAddTodoView) {
+                        AddTodoView()
+                    }
+                )
+                // MARK: NO todo item
+                if (self.todos.count == 0) {
+                    Text("Empty List")
                 }
-                .sheet(isPresented: $showingAddTodoView) {
-                    AddTodoView()
-                }
-            )
+            } //ZSTACK
         }
         .onChange(of: scenePhase) { phase in
             switch phase {
